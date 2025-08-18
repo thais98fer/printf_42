@@ -3,55 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thais.fer <thais.fer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:50:46 by thfernan          #+#    #+#             */
-/*   Updated: 2025/08/13 17:42:05 by thfernan         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:54:36 by thais.fer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	<stdio.h>
-#include	"ft_printf.h"
+#include <stdio.h>
+#include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_putchar(char c)
 {
-	if (fd < 0)
-		return (0);
-	write(fd, &c, 1);
+	write(1, &c, 1);
 	return (1);
 }
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr(unsigned long int nbr, int base, int is_signed, int upper)
 {
-	int	count;
+	int		count;
+	char	*digits;
 
 	count = 0;
-	if (n == -2147483648)
+	if (upper == 1)
+		digits = "0123456789ABCDEF";
+	else
+		digits = "0123456789abcdef";
+	if (is_signed && (long)nbr < 0)
 	{
-		count += ft_putstr_fd("-2147483648", fd);
-		return (count);
+		count += ft_putchar('-');
+		nbr = -(long)nbr;
 	}
-	if (n < 0)
-	{
-		count += ft_putchar_fd('-', fd);
-		n = -n;
-	}
-	if (n > 9)
-		count += ft_putnbr_fd(n / 10, fd);
-	count += ft_putchar_fd((n % 10) + '0', fd);
+	if (nbr >= (unsigned long)base)
+		count += ft_putnbr(nbr / base, base, 0, upper);
+	else if (nbr == 0 && base == 16)
+		return (ft_putchar('0'));
+	count += ft_putchar(digits[nbr % base]);
 	return (count);
 }
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr(char *s)
 {
 	int	count;
 
 	count = 0;
-	if (!s || fd < 0)
-		return (count += (ft_putstr_fd("(null)", 1)));
+	if (!s)
+		return (ft_putstr("(null)"));
 	while (*s)
 	{
-		count += ft_putchar_fd(*s, fd);
+		count += ft_putchar(*s);
 		s++;
 	}
 	return (count);
@@ -59,22 +59,29 @@ int	ft_putstr_fd(char *s, int fd)
 
 int	ft_check(char c, va_list args)
 {
+	void	*ptr;
+
 	if (c == 'd' || c == 'i')
-		return (ft_putnbr_fd(va_arg(args, int), 1));
+		return (ft_putnbr(va_arg(args, int), 10, 1, 0));
 	if (c == 'c')
-		return (ft_putchar_fd(va_arg(args, int), 1));
+		return (ft_putchar(va_arg(args, int)));
 	if (c == 's')
-		return (ft_putstr_fd(va_arg(args, char *), 1));
+		return (ft_putstr(va_arg(args, char *)));
 	if (c == 'p')
-		return (ft_put_adress((unsigned long int)va_arg(args, void *)));
+	{
+		ptr = va_arg(args, void *);
+		if (!ptr)
+			return (ft_putstr("(nil)"));
+		return (ft_putstr("0x") + ft_putnbr((unsigned long int)ptr, 16, 0, 0));
+	}
 	if (c == 'u')
-		return (ft_put_dec(va_arg(args, unsigned int)));
+		return (ft_putnbr(va_arg(args, unsigned int), 10, 0, 0));
 	if (c == '%')
-		return (ft_put_perc());
+		return (ft_putchar('%'));
 	if (c == 'x')
-		return (ft_put_hex(va_arg(args, unsigned int), 0));
-	else if (c == 'X')
-		return (ft_put_hex(va_arg(args, unsigned int), 1));
+		return (ft_putnbr(va_arg(args, unsigned int), 16, 0, 0));
+	if (c == 'X')
+		return (ft_putnbr(va_arg(args, unsigned int), 16, 0, 1));
 	return (0);
 }
 
@@ -94,7 +101,7 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			count += ft_putchar_fd(*format, 1);
+			count += ft_putchar(*format);
 		}
 		format++;
 	}
@@ -111,7 +118,7 @@ int	ft_printf(const char *format, ...)
 	int				i = 123;
 	int				hex = 255;
 	unsigned int	u = -42;
-	int				size_o; //Retorno printf original
+	int				size_o; // Retorno printf original
 	int				size_m; // Retorno minha printf
 
 	printf("=== Original printf ===\n");

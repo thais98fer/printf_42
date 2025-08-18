@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thais.fer <thais.fer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 13:00:48 by thfernan          #+#    #+#             */
-/*   Updated: 2025/08/13 17:41:04 by thfernan         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:40:03 by thais.fer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,8 @@
 # include <stdlib.h>
 
 int	ft_printf(const char *format, ...);
-int	ft_put_adress(unsigned long int nb);
-int	ft_put_dec(unsigned int n);
-int	ft_put_hex(unsigned int n, char upper);
-int	ft_put_perc(void);
-int	ft_putchar_fd(char c, int fd);
-int	ft_putnbr_fd(int n, int fd);
-int	ft_putstr_fd(char *s, int fd);
+int	ft_putchar(char c);
+int	ft_putnbr(unsigned long int nbr, int base, int is_signed, int upper);
+int	ft_putstr(char *s);
 
 #endif
