@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_format.c                                  :+:      :+:    :+:   */
+/*   ft_parse_format_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thais.fer <thais.fer@student.42.fr>        +#+  +:+       +#+        */
+/*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:56:09 by thais.fer         #+#    #+#             */
-/*   Updated: 2025/08/19 10:15:31 by thais.fer        ###   ########.fr       */
+/*   Updated: 2025/08/28 20:31:50 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 const char	*ft_parse_format(const char *format, t_list *spec)
 {

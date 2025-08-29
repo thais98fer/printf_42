@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thais.fer <thais.fer@student.42.fr>        +#+  +:+       +#+        */
+/*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:50:46 by thfernan          #+#    #+#             */
-/*   Updated: 2025/08/25 14:45:49 by thais.fer        ###   ########.fr       */
+/*   Updated: 2025/08/28 20:33:09 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,37 +106,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	int				c = 'l';
-	char			*str = "Teste";
-	char			*str2 = NULL;
-	void			*pointer = str;
-	int				d = -42;
-	int				i = 123;
-	int				in = 0;
-	int				hex = 255;
-	int				hexz = 0;
-	unsigned int	u = -42;
-	unsigned int	un = 0;
-	unsigned int	tes = 43;
-	int				size_o; // Retorno printf original
-	int				size_m; // Retorno minha printf
-
-	printf("=== Original printf ===\n");
-    size_o = printf("char: %c, string: %s, ponteiro: %p, decimal: %d, inteiro: %i, unsigned: %u, hex: %x, HEX: %X, porcento: %%\n", c, str, pointer, d, i, u, hex, hex);
-    printf("Retorno printf: %d\n\n", size_o);
-
-    printf("=== Minha ft_printf ===\n");
-    size_m = ft_printf("char: %c, string: %s, ponteiro: %p, decimal: %d, inteiro: %i, unsigned: %u, hex: %x, HEX: %X, porcento: %%\n", c, str, pointer, d, i, u, hex, hex);
-    printf("Retorno ft_printf: %d\n\n", size_m);
-
-    printf("VALORES EXTREMOS\n");
-    size_o = printf("O: |%d| |%d|\n", INT_MIN, INT_MAX);
-    size_m = ft_printf("M: |%d| |%d|\n", INT_MIN, INT_MAX);
-    printf("Retorno O: %d, Retorno M: %d\n\n", size_o, size_m);
-	return (0);
 }

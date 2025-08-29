@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pad_zeros_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thais.fer <thais.fer@student.42.fr>        +#+  +:+       +#+        */
+/*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:52:30 by thais.fer         #+#    #+#             */
-/*   Updated: 2025/08/25 12:24:30 by thais.fer        ###   ########.fr       */
+/*   Updated: 2025/08/28 20:31:42 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_padding(char c, int n)
 {

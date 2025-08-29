@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_specifier.c                                :+:      :+:    :+:   */
+/*   ft_init_specifier_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 16:44:29 by thais.fer         #+#    #+#             */
-/*   Updated: 2025/08/22 13:59:04 by thfernan         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:31:40 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 t_list	ft_init_specifier(void)
 {
